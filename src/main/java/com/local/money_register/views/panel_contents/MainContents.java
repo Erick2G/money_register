@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import com.local.money_register.constants.Constants;
 import com.local.money_register.views.factory.Panel;
@@ -23,7 +24,7 @@ public class MainContents extends PanelContent {
 	private static MainContents instance;
 
 	private MainContents() {
-		createElements();
+		//createElements();
 	}
 
 	public static MainContents getInstance() {
@@ -61,6 +62,15 @@ public class MainContents extends PanelContent {
 	@Override
 	protected void createtextFields() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	// ACTUALIZAR CONTENIDO
+
+	@Override
+	public void refreshContents(Map<String, String> viewContent) {
+		
+		
 		
 	}
 

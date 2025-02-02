@@ -8,29 +8,32 @@ import javax.swing.JOptionPane;
 public class Custom_Label extends JLabel {
 	private int width = 0, height = 0;
 	private int currentMeassure = 0;
+	private int generalCharSize = 0;
 
-	// CONSTRUCTORES
+	// CONSTRUCTORES -----------------------------------------
 
-	public Custom_Label(String labelText, int meassure, Integer x, Integer y, int maxLength) {
+	public Custom_Label(String labelText, int charSize, Integer x, Integer y, int maxLength) {
 		super();
-		calculateMeassure(meassure);
+		generalCharSize = charSize;
+		currentMeassure = calculateMeassure(generalCharSize);
 		setWidthAndHeight(labelText, maxLength);
 		setAllBounds(x, y);
-		this.setText(formatText(labelText, meassure));
+		this.setText(formatText(labelText, generalCharSize));
 //		this.setBackground(Color.gray);
 //		this.setOpaque(true);
 	}
 
-	public Custom_Label(String labelText, int meassure, Integer x, Integer y, int width, int height) {
+	public Custom_Label(String labelText, int charSize, Integer x, Integer y, int width, int height) {
 		super();
-		calculateMeassure(meassure);
+		generalCharSize = charSize;
+		currentMeassure = calculateMeassure(generalCharSize);
 		this.width = width;
 		this.height = height;
 		setAllBounds(x, y);
-		this.setText(formatText(labelText, meassure));
+		this.setText(formatText(labelText, generalCharSize));
 	}
 
-	// METODOS
+	// CALCULAR DIMENSIONES -----------------------------------
 
 	private void setWidthAndHeight(String text, int maxLength) {
 		int textLength = text.length() * currentMeassure;
@@ -53,10 +56,24 @@ public class Custom_Label extends JLabel {
 		}
 	}
 
-	private String formatText(String message, int meassure) {
+	private int calculateMeassure(int meassure) {
+		switch (meassure) {
+		default:
+		case 0:
+			return 8;
+		case 1:
+			return 12;
+		case 2:
+			return 10;
+		}
+	}
+
+	// MODIFICAR TEXTO
+	
+	private String formatText(String message, int charSize) {
 		String newText = "<html>";
 		
-		switch(meassure) {
+		switch(charSize) {
 		default:
 		case 0:
 			newText+= "<p>" + message + "<p>";
@@ -72,18 +89,7 @@ public class Custom_Label extends JLabel {
 		return newText + "<html>";
 	}
 
-	private void calculateMeassure(int meassure) {
-		switch (meassure) {
-		default:
-		case 0:
-			currentMeassure = 8;
-			break;
-		case 1:
-			currentMeassure = 12;
-			break;
-		case 2:
-			currentMeassure = 10;
-			break;
-		}
+	public void setNewText(String text) {
+		setText(formatText(text, generalCharSize));
 	}
 }

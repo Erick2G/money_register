@@ -2,6 +2,7 @@ package com.local.money_register.views.panel;
 
 
 import java.awt.Color;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -17,7 +18,7 @@ public class MainPanel extends Panel {
 	
 	private MainPanel() {
 		super(10, 10, Constants.PANEL_MAX_WIDTH, Constants.PANEL_MAX_HEIGHT);
-		prepareMainPanel();
+		//prepareMainPanel();
 		//getPanel().setBackground(Color.cyan);
 	}
 	
@@ -31,9 +32,16 @@ public class MainPanel extends Panel {
 	
 	// LOGICA DEL PANEL
 	
-	public void prepareMainPanel() {
+	public Panel prepareMainPanel() {
+		MainContents.getInstance().createElements();
 		addComponentsToPanel(MainContents.getInstance().getComponents());
+		
+		return this;
+	}
 
+	@Override
+	public void refreshPanel(Map<String, String> viewContent) {
+		
 	}
 	
 	
